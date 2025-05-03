@@ -11,10 +11,16 @@ SDL_FRect renderQuad = {
 };
 SDL_RenderTexture(renderer, textTexture, NULL, &renderQuad);
 
-// CHECK IF KEYS ARE PRESSED
+// DETECT IF KEYS ARE PRESSED
 
 if (currKeyState[SDL_SCANCODE_RETURN] && !prevKeyState[SDL_SCANCODE_RETURN]) {
     printf("Enter key was just pressed\n");
+}
+
+// DETECT IF MOUSE IF CLICKED
+
+if ((currMouseState & SDL_BUTTON_LMASK) && !(prevMouseState & SDL_BUTTON_LMASK)) {
+    printf("Left mouse button was just pressed at (%d, %d)\n", mousex, mousey);
 }
 
 // RENDER ROTATED TEXTURE

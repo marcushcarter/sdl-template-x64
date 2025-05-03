@@ -20,6 +20,9 @@ bool running;
 #define NUM_KEYS 256
 Uint8 currKeyState[NUM_KEYS];
 Uint8 prevKeyState[NUM_KEYS];
+Uint32 currMouseState;
+Uint32 prevMouseState;
+int mousex, mousey;
 
 SDL_Texture* texture;
 TTF_Font* font;
@@ -91,6 +94,9 @@ void inputs() {
     }
     const Uint8* sdlKeys = (Uint8*)SDL_GetKeyboardState(NULL);
     SDL_memcpy(currKeyState, sdlKeys, NUM_KEYS);
+    
+    prevMouseState = currMouseState;
+    currMouseState = SDL_GetMouseState(&mousex, &mousey);
 }
 
 void update() {
